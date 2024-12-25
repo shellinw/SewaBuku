@@ -7,6 +7,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.get("/books", Controller.getBuku);
+app.post("/rent/:id", Controller.sewaBuku);
 
 app.listen(port, () => {
     console.log(`Listening on port ${port}`);
