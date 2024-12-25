@@ -13,7 +13,6 @@ const errorhandler = (err, req, res, next) => {
         status = 400;
         message = "Tanggal Kembali Tidak Boleh Lebih Awal Dari Tanggal Pinjam.";
     }
-
     res.status(status).json({ message });
 };
 module.exports = errorhandler;
