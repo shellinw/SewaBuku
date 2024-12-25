@@ -6,7 +6,9 @@ function App() {
     const getBuku = async () => {
         try {
             const response = await fetch("http://localhost:3000/books");
-            console.log(response);
+            const jsonData = await response.json();
+            setDataBuku(jsonData.data);
+            console.log(dataBuku, "mnin");
         } catch (error) {
             console.log(error);
         }
@@ -14,18 +16,15 @@ function App() {
     useEffect(() => {
         getBuku();
     }, []);
-    console.log(dataBuku);
     return (
         <>
             <div className="app-container">
                 <div className="header">Sewa Buku App</div>
                 <div className="sub-header">Explore Koleksi Kami!</div>
                 <div className="content">
-                    <BukuCard />
-                    <BukuCard />
-                    <BukuCard />
-                    <BukuCard />
-                    <BukuCard />
+                    {dataBuku.map((buku) => (
+                        <BukuCard key={buku.id} buku={buku} />
+                    ))}
                 </div>
             </div>
         </>
