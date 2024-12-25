@@ -1,68 +1,121 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body, html {
+  height: 100%;
+  font-family: Arial, sans-serif;
+}
+
+/* Center the content of the page */
+.app-container {
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh; /* Full viewport height */
+  background-color: #ffffff; /* Light background color */
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.content {
+  display: flex;
+  text-align: center; /* Center text within the content */
+  padding: 20px;
+  background-color: #c6cdc9;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Card-like shadow */
+  margin: 20px ;
+  flex-wrap: wrap;
+  
 }
 
-button {
+/* Header Styles */
+.header {
+  font-size: 2em;
+  font-weight: bold;
+  color: #333;
+  margin: 10px;
+  margin-top: 40px;
+}
+
+.sub-header {
+  font-size: 1.2em;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+
+/* BukuCard.css */
+.book-card {
+  background-color: #f9f9f9;
   border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  width: 220px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.book-title {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.book-author {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.book-price {
+  font-size: 1.1em;
+  color: #2c6e49;
+  margin-bottom: 20px;
+}
+
+.rent-button {
+  background-color: #2c6e49;
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.3s ease;
+}
+
+.rent-button:hover {
+  background-color: #1e4d35;
+}
+
+@media (max-width: 500px) {
+  .book-card {
+      width: 160px;
+      padding: 15px;
   }
-  a:hover {
-    color: #747bff;
+  .book-title {
+      font-size: 1em;
   }
-  button {
-    background-color: #f9f9f9;
+  .book-author {
+      font-size: 0.9em;
+  }
+  .book-price {
+      font-size: 1em;
+  }
+  .rent-button {
+      padding: 8px;
   }
 }
