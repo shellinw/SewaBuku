@@ -9,8 +9,8 @@ class Controller {
                 message: "Success",
                 data: dataBuku,
             });
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            next(err);
         }
     }
     static async sewaBuku(req, res, next) {
@@ -18,6 +18,9 @@ class Controller {
             const { id } = req.params;
             const { tglPinjam, tglKembali } = req.body;
             const buku = await Buku.findByPk(id);
+            if (!buku) {
+                throw new Error("NotFound");
+            }
             const tarif = buku.tarifPerHari;
 
             //function to count totalPrice here
@@ -27,8 +30,8 @@ class Controller {
                 book: buku,
                 tarif: tarifSewa,
             });
-        } catch (error) {
-            console.log(error);
+        } catch (err) {
+            next(err);
         }
     }
 }
