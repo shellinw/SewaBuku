@@ -1,0 +1,28 @@
+[
+    {
+      "judul": "Dasar-Dasar HTML dan CSS",
+      "penulis": "Jane Smith",
+      "tarifPerHari": 15000
+    },
+    {
+      "judul": "Machine Learning dengan Python",
+      "penulis": "Alice Johnson",
+      "tarifPerHari": 25000
+    },
+    {
+      "judul": "Belajar JavaScript dari Awal",
+      "penulis": "Robert Brown",
+      "tarifPerHari": 18000
+    },
+    {
+      "judul": "Pengantar Database MySQL",
+      "penulis": "Michael Clark",
+      "tarifPerHari": 22000
+    },
+    {
+      "judul": "Desain Grafis dengan Adobe Illustrator",
+      "penulis": "Emily Davis",
+      "tarifPerHari": 20000
+    }
+  ]
+  
