@@ -6,6 +6,11 @@ Terdapat Fitur:
 * Menyewa buku.
 * Menghitung total biaya sewa berdasarkan durasi (dari tanggal Pinjam dan tanggal pengembalian).
 
+## BASE URL
+Berikut Base Url untuk semua API request:
+```
+http://localhost:3000
+```
 
 ## Models :
 
