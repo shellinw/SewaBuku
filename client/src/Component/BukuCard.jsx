@@ -65,7 +65,7 @@ const BukuCard = ({ buku }) => {
             </div>
             <div className="book-author">Penulis: {penulis}</div>
             <div className="book-price">
-                Tarif Per Hari:
+                Tarif / Hari:
                 <div>{formatRupiah(tarifPerHari)}</div>
             </div>
             {isFormVisible === true ? (
