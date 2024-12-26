@@ -26,7 +26,7 @@ const BukuCard = ({ buku }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!tglPinjam || !tglKembali) {
-            alert("Please select both start and return dates.");
+            alert("Error:Tanggal Pinjam dan Tanggal Kembali Belum diisi.");
             return;
         }
 
@@ -42,17 +42,13 @@ const BukuCard = ({ buku }) => {
                 }),
             });
 
-            // Check if the response is not ok (i.e., not in the 2xx range)
             if (!response.ok) {
-                const errorData = await response.json(); // Get the error message from the response
-                throw new Error(
-                    errorData.message || "Something went wrong on the server."
-                );
+                const errorData = await response.json();
+                throw new Error(errorData.message);
             }
             const data = await response.json();
             setTotalSewa(data.tarif);
         } catch (error) {
-            console.error("Error:", error.message);
             alert(`Error: ${error.message}`);
         }
     };
@@ -99,8 +95,10 @@ const BukuCard = ({ buku }) => {
                             onChange={(e) => setTglKembali(e.target.value)}
                         />
                     </div>
-                    <div className="confirm-button">
-                        <button type="submit">Calculate Total Rent</button>
+                    <div>
+                        <button className="confirm-button" type="submit">
+                            Calculate Total Rent
+                        </button>
                     </div>
                 </form>
             )}
