@@ -8,13 +8,13 @@ Terdapat Fitur:
 
 
 ### Main Page
-[mainpage](/SewaBuku/mainpage.png)
+[mainpage](mainpage.png)
 
 ### Input Date 
-[inputdateform](/SewaBuku/inputform.png)
+[inputdateform](inputform.png)
 
 ### Validation
-[validation](/SewaBuku/validation.png)
+[validation](validation.png)
 
 
 ## BASE URL
