@@ -8,13 +8,14 @@ Terdapat Fitur:
 
 
 ### Main Page
-[mainpage](mainpage.png)
+![mainpage](mainpage.png)
 
 ### Input Date 
-[inputdateform](inputform.png)
+![inputdateform](inputform.png)
 
 ### Validation
-[validation](validation.png)
+![validation](validation.png)
+
 
 
 ## BASE URL
