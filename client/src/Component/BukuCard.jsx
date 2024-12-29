@@ -23,13 +23,16 @@ const BukuCard = ({ buku }) => {
     const confirmSewa = () => {
         if (!totalSewa) {
             setErrMessage("Error: Tanggal masih kosong.");
+            setTimeout(() => {
+                setErrMessage("");
+            }, 3000);
         } else {
             setSuccessAlert(true);
 
             setTimeout(() => {
                 setSuccessAlert(false);
                 window.location.reload();
-            }, 1000);
+            }, 3000);
         }
     };
 
@@ -39,6 +42,9 @@ const BukuCard = ({ buku }) => {
             setErrMessage(
                 "Error:Tanggal Pinjam dan Tanggal Kembali Belum diisi."
             );
+            setTimeout(() => {
+                setErrMessage("");
+            }, 3000);
             return;
         }
 
