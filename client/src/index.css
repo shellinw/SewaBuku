@@ -127,6 +127,27 @@ body, html {
   text-align: center;
 }
 
+.success-alert{
+  color:#0c6a25;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom:10px;
+  border:#2c6e49 solid 2px;
+  font-weight: 800;
+font-size: 1rem;
+  
+}
+
+.error-alert{
+  color:#6a0c0c;
+  padding: 8px;
+  border-radius: 8px;
+  margin-bottom:10px;
+  border:#710606 solid 2px;
+  font-weight: 800;
+font-size: 1rem;
+}
+
 @media (max-width: 500px) {
   .book-card {
       width: 160px;
