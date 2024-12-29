@@ -45,36 +45,9 @@ const BukuCard = ({ buku }) => {
         return <div className="error-alert">{errMessage}</div>;
     };
 
-    //confirm totalSewa from server
-    // const confirmSewa = () => {
-    //     if (!totalSewa) {
-    //         setErrMessage("Error: Tarif Belum Terhitung");
-    //         setTimeout(() => {
-    //             setErrMessage("");
-    //         }, 3000);
-    //     } else {
-    //         setSuccessAlert(true);
-
-    //         setTimeout(() => {
-    //             setSuccessAlert(false);
-    //             window.location.reload();
-    //         }, 3000);
-    //     }
-    // };
-
     //hit endpoint
     const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!tglPinjam || !tglKembali) {
-            setErrMessage(
-                "Error:Tanggal Pinjam dan Tanggal Kembali Belum diisi."
-            );
-            setTimeout(() => {
-                setErrMessage("");
-            }, 3000);
-            return;
-        }
-
         try {
             const response = await fetch(`http://localhost:3000/rent/${id}`, {
                 method: "POST",
@@ -101,6 +74,9 @@ const BukuCard = ({ buku }) => {
             }, 3000);
         } catch (error) {
             setErrMessage(error.message);
+            setTimeout(() => {
+                setErrMessage("");
+            }, 3000);
         }
     };
 
@@ -131,6 +107,7 @@ const BukuCard = ({ buku }) => {
                     </>
                 )}
 
+                {/* show form */}
                 {isFormVisible && (
                     <form onSubmit={handleSubmit} className="rent-form">
                         <div className="label-date">
@@ -151,11 +128,6 @@ const BukuCard = ({ buku }) => {
                                 onChange={(e) => setTglKembali(e.target.value)}
                             />
                         </div>
-                        {/* <div>
-                            <button className="confirm-button" type="submit">
-                                Calculate Total Rent
-                            </button>
-                        </div> */}
                     </form>
                 )}
 

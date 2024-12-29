@@ -22,8 +22,6 @@ class Controller {
                 throw new Error("NotFound");
             }
             const tarif = buku.tarifPerHari;
-            console.log(tglPinjam, "start");
-            console.log(tglKembali, "end");
 
             //function to count totalPrice here
             const tarifSewa = calculateTotalRent(tglPinjam, tglKembali, tarif);
