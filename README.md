@@ -8,9 +8,7 @@ Terdapat Fitur:
 
 
 ### Main Page
-```
 [mainpage](mainpage.png)
-```
 
 ### Input Date 
 [inputdateform](inputform.png)
