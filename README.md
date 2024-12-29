@@ -6,6 +6,17 @@ Terdapat Fitur:
 * Menyewa buku.
 * Menghitung total biaya sewa berdasarkan durasi (dari tanggal Pinjam dan tanggal pengembalian).
 
+
+### Main Page
+[mainpage](../mainpage.png)
+
+### Input Date 
+[inputdateform](../inputform.png)
+
+### Validation
+[validation](../validation.png)
+
+
 ## BASE URL
 Berikut Base Url untuk semua API request:
 ```
