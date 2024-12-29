@@ -148,6 +148,18 @@ font-size: 1rem;
 font-size: 1rem;
 }
 
+.detail-rent{
+  font-size: 15px;
+  border:#716e6e solid 1px;
+  border-radius: 8px;
+  padding: 1rem;
+}
+.detail-rent-subtitle{
+  font-size: 12px;
+  text-align: start;
+  font-weight: bold;
+  font-style: italic;
+}
 @media (max-width: 500px) {
   .book-card {
       width: 160px;

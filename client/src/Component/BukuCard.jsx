@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { formatRupiah } from "../../helper";
+import { formatRupiah, calculateDateDifference } from "../../helper";
 const BukuCard = ({ buku }) => {
     const { judul, penulis, tarifPerHari, id } = buku;
     const [tglPinjam, setTglPinjam] = useState("");
@@ -8,34 +8,61 @@ const BukuCard = ({ buku }) => {
     const [isFormVisible, setIsFormVisible] = useState(false);
     const [successAlert, setSuccessAlert] = useState(false);
     const [errMessage, setErrMessage] = useState("");
+    const [days, setDays] = useState(0);
+
+    //render totalSewa sesuai tgl input
+    useEffect(() => {
+        if (tglPinjam && tglKembali) {
+            if (tglKembali < tglPinjam) {
+                setErrMessage(
+                    "Error: Tanggal Kembali tidak bisa lebih awal dari Tanggal Pinjam."
+                );
+                setTotalSewa(null);
+                setTimeout(() => {
+                    setErrMessage("");
+                }, 3000);
+            }
+            const days = calculateDateDifference(tglPinjam, tglKembali);
+            if (days > 0) {
+                setTotalSewa(days * tarifPerHari);
+                setDays(days);
+            } else {
+                setTotalSewa(null);
+            }
+        }
+    }, [tglPinjam, tglKembali]);
+
+    //form sewa
     const handleSewaClick = () => {
         setIsFormVisible(true);
     };
 
+    //success and error
     const SuccessAlert = () => {
         return <div className="success-alert">Sewa Berhasil!</div>;
     };
-
     const ErrorAlert = () => {
         return <div className="error-alert">{errMessage}</div>;
     };
 
-    const confirmSewa = () => {
-        if (!totalSewa) {
-            setErrMessage("Error: Tanggal masih kosong.");
-            setTimeout(() => {
-                setErrMessage("");
-            }, 3000);
-        } else {
-            setSuccessAlert(true);
+    //confirm totalSewa from server
+    // const confirmSewa = () => {
+    //     if (!totalSewa) {
+    //         setErrMessage("Error: Tarif Belum Terhitung");
+    //         setTimeout(() => {
+    //             setErrMessage("");
+    //         }, 3000);
+    //     } else {
+    //         setSuccessAlert(true);
 
-            setTimeout(() => {
-                setSuccessAlert(false);
-                window.location.reload();
-            }, 3000);
-        }
-    };
+    //         setTimeout(() => {
+    //             setSuccessAlert(false);
+    //             window.location.reload();
+    //         }, 3000);
+    //     }
+    // };
 
+    //hit endpoint
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!tglPinjam || !tglKembali) {
@@ -60,12 +87,18 @@ const BukuCard = ({ buku }) => {
                 }),
             });
 
+            //if response not ok
             if (!response.ok) {
                 const errorData = await response.json();
                 throw new Error(errorData.message);
             }
-            const data = await response.json();
-            setTotalSewa(data.tarif);
+
+            //else
+            setSuccessAlert(true);
+            setTimeout(() => {
+                setSuccessAlert(false);
+                window.location.reload();
+            }, 3000);
         } catch (error) {
             setErrMessage(error.message);
         }
@@ -89,7 +122,6 @@ const BukuCard = ({ buku }) => {
                     <></>
                 ) : (
                     <>
-                        {" "}
                         <button
                             className="rent-button"
                             onClick={handleSewaClick}
@@ -119,24 +151,31 @@ const BukuCard = ({ buku }) => {
                                 onChange={(e) => setTglKembali(e.target.value)}
                             />
                         </div>
-                        <div>
+                        {/* <div>
                             <button className="confirm-button" type="submit">
                                 Calculate Total Rent
                             </button>
-                        </div>
+                        </div> */}
                     </form>
                 )}
 
                 {totalSewa !== null && (
-                    <div className="total-rent">
-                        Total Sewa: <strong>{formatRupiah(totalSewa)}</strong>
-                    </div>
+                    <>
+                        <div className="detail-rent">
+                            <div className="detail-rent-subtitle">Rincian:</div>
+                            {days} hari x {formatRupiah(tarifPerHari)}
+                        </div>
+                        <div className="total-rent">
+                            Total Sewa:{" "}
+                            <strong>{formatRupiah(totalSewa)}</strong>
+                        </div>
+                    </>
                 )}
                 {isFormVisible === false ? (
                     <></>
                 ) : (
                     <>
-                        <button className="rent-button" onClick={confirmSewa}>
+                        <button className="rent-button" onClick={handleSubmit}>
                             Sewa Sekarang
                         </button>
                     </>
